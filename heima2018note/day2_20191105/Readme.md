@@ -10,7 +10,7 @@ git config --global user.email "email"
 二操作
 git init 创建仓库
 git add  添加
-git commit -m "##" 提交带注释
+git commit -m "##" 提交带注释 -m 后面加注释
 
 **git push**
 
@@ -29,3 +29,25 @@ git remote remove <name> name为错误的仓库名字
 
 git status 查看当前状态
 git diff 查看具体修改了啥
+
+git log 查看历史日志。
+但是如果是：
+git log  --pretty=oneline,显示的则是commit_id & 提交的文本。
+
+
+版本问题
+当前版本 HEAD ，上个版本HEAD^,上上个版本HEAD^^。但是呢，如果版本忒多了，那么有一个更简洁的表示出来了，eg.HEAD~100,标识往上100个版本
+
+git reset 调整版本
+eg. git reset --hard HEAD^ 将版本调整为上一个版本
+？？--hard 这个含义我还不懂，回头补上？？
+eg. git reset --hard <commit_id>  commit_id 为前几位就行了
+
+git reflog 用来记录版本变化的日志
+
+三、工作区和暂存区
+工作区：简单理解为本地电脑
+版本库=暂存区+各个分支以及各个分支所有包含的节点
+工作区+add操作->暂存区
+暂存区+commit操作->具体分支
+
