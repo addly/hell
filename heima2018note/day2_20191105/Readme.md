@@ -51,3 +51,76 @@ git reflog 用来记录版本变化的日志
 工作区+add操作->暂存区
 暂存区+commit操作->具体分支
 
+放弃修改
+git checkout -- <file> 此命令回到 上次 git add 或 git commit 状态
+如果已经commit，那就用reset切换到之前的版本，再执行checkout。
+但是如果推送到远程库，那就没有补救措施了。
+
+删除：从版本中删除东西
+git rm <file>，
+如果删错了，还有checkout补救
+
+
+推送远程库
+1.首先要连上自己的github账号，要创建SSH Key：
+ssh-keygen -t rsa -C "<my_email>",
+通过此命令生成公钥和私钥
+2.github上将公钥配上
+Account settings->add ssh key
+3.github上建一个新的仓库，用于推送暂存区代码
+4.本地链接远程仓库
+git remote add origin <仓库ip地址> origin为远程库名字，系统默认名为此。
+5.git push 见前面的笔记
+git push -u 本地分支名 远程分支名，
+eg. git push -u origin master,
+其中-u是互相关联的意思，远程&本地仓库
+
+
+克隆远程库
+git clone <ip_address>
+
+
+
+git checkout -b dev 创建并切换到新分支，
+相当于：
+git branch dev //创建新分支，
+git checkout dev //切换分支
+
+查看分支
+git branch 查看当前分支，/* 所在分支为当前分支
+
+合并分支
+将分支合并到master：
+1.将分支切换到master：git checkout master,
+2.将dev合并到master：git merge dev
+
+查看分支合并情况：
+git log --graph --pretty=oneline --abbrev-commit
+
+--no-ff  作用是禁止快进式合并
+git merge --no-f -m "merge but fix 101" issue-101,
+作用是将分支issue-101合并到当前分支的下一个节点，而不是合并到issue-101当前的节点。
+
+
+git stash 存储当前工作现场，方便以后恢复，
+git stash list 查看之前的工作现场，
+git stash apply 恢复之前的工作现场，但是stash内容还存在，
+需要 git stash drop 来删除。
+git stash pop 恢复现场的同时，删除stash上相应内容。
+
+
+git pull 拉代码
+git pull 远程仓库名  本地分支名字：后面分支名字
+eg： git pull learngit master:master
+
+
+
+打tag
+1.先确认分支，
+2.git tag <name>
+
+
+
+
+
+
